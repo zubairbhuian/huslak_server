@@ -1,0 +1,70 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/.0d1e2e58c8dcfc49837a37c6262519537bdb9265-audit.json",
+    "files": [
+        {
+            "date": 1717269858278,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-01-error.log",
+            "hash": "63417898426fb1eb8309ef6711405366572a56da8e7f57673de91ac8c4e856d1"
+        },
+        {
+            "date": 1717272752860,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-02-error.log",
+            "hash": "b1d3b7efe4ec6d76cc9987d9f2308e460d19d2faa50fa124cc8772cad541fcb6"
+        },
+        {
+            "date": 1717284456239,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-05-error.log",
+            "hash": "218999a69548562a6a3fb8f483f465d0c87ee857321f7f542b5396726d890dfd"
+        },
+        {
+            "date": 1717286440724,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-06-error.log",
+            "hash": "32ce35dabfedf2639faa95aa103f6a167205bdd3ed9f41ea0edee7b9f175d776"
+        },
+        {
+            "date": 1717290038238,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-07-error.log",
+            "hash": "56a4efab154e2e9235505df3cfc974b74ef0bde63b0a1487cc6b0e7d68d547e3"
+        },
+        {
+            "date": 1717323882702,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-16-error.log",
+            "hash": "4f18574cfdd7ab7f126aed2c8ecdb4a0e160c6bc44016bd3557859dacc2b7b7b"
+        },
+        {
+            "date": 1717326025487,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-17-error.log",
+            "hash": "1ebff3d1a7dbdc8b6acc98f3228893120d634453a0e5ba5c9b1558b5365e5c1d"
+        },
+        {
+            "date": 1717329605697,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-02-18-error.log",
+            "hash": "c3d6e9606251be38abf08e43384d7a6401829644395dfa786d6cc03948e81a18"
+        },
+        {
+            "date": 1717351918403,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-03-00-error.log",
+            "hash": "21b60f9a2cfd062c9d8f042be426238ff2e528fa05d1613a89c905c5c735661e"
+        },
+        {
+            "date": 1717355203955,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-03-01-error.log",
+            "hash": "5b8f67e0337c4b6952794f39463588e9492a5a2a4471592b05e12eee935c88ef"
+        },
+        {
+            "date": 1717361701553,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-03-02-error.log",
+            "hash": "6e01787a88a9d4525772984f992eb39eb8ef7c588c713d07f58182f7c4a44c65"
+        },
+        {
+            "date": 1717362003359,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/skb-2024-06-03-03-error.log",
+            "hash": "f4bf7ace06da306a0c290c27a98d7801f9c311f4dca59a91e22da54c9461d001"
+        }
+    ],
+    "hashType": "sha256"
+}

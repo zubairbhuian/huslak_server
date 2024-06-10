@@ -1,0 +1,70 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 10
+    },
+    "auditLog": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/.e90fc44cf35ffc8b61fcdfeaf5d6cda24fb197a7-audit.json",
+    "files": [
+        {
+            "date": 1717269858275,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-01-success.log",
+            "hash": "b74fc26a4022fcbc10d907ec8412350c4cfd9e6a0bc95a0162cf6f0e05a5146e"
+        },
+        {
+            "date": 1717272752856,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-02-success.log",
+            "hash": "94244ce9c53e1371aa7c019b1710d7cd485a3bceee884427d7c29c9562d1802d"
+        },
+        {
+            "date": 1717284456236,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-05-success.log",
+            "hash": "e048b0ea7e0e5b16718406ad2bae0d99098fd73775e3f2f809b663543db63a5f"
+        },
+        {
+            "date": 1717286622938,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-06-success.log",
+            "hash": "f7895f4b02d6c4790de3366ee38dc9833a6eff2aaa322edf7bdee5e7f9e2ac0c"
+        },
+        {
+            "date": 1717290038234,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-07-success.log",
+            "hash": "27138d9a288075084c02d73c4311e0657dd32ca02b0c4cc0cec96a48488446b7"
+        },
+        {
+            "date": 1717323882699,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-16-success.log",
+            "hash": "598472b7788fe78e8aef8b99d38b05271e965e1e647de881907440e0c34988a3"
+        },
+        {
+            "date": 1717326025484,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-17-success.log",
+            "hash": "5571097fb3065a2afa3ccfd2019f60510cebfff9901e62fbe335797452550750"
+        },
+        {
+            "date": 1717329605692,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-02-18-success.log",
+            "hash": "502514e513bebaea2f29ef113998cbf3d0f0392ce74782d52f2c1ab1bf14eb82"
+        },
+        {
+            "date": 1717351918400,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-03-00-success.log",
+            "hash": "940690c2543468225b2594fb28d4ebc4dcad7e607903542691ff02eee4b57089"
+        },
+        {
+            "date": 1717355203950,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-03-01-success.log",
+            "hash": "c20546ff4d212235c1214402131d0e624fbc58c4fcf7befb1b03e46df7db257f"
+        },
+        {
+            "date": 1717361701548,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-03-02-success.log",
+            "hash": "b26aa50c039d23bc869db1f3796383983d0de33fce0b3027337b8517e4774cf7"
+        },
+        {
+            "date": 1717362003355,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/skb-2024-06-03-03-success.log",
+            "hash": "6cf130a2e8836db965eb2fb4e7f17bb8b680bf0e6bbbd54732de3f2a5f8b72c0"
+        }
+    ],
+    "hashType": "sha256"
+}

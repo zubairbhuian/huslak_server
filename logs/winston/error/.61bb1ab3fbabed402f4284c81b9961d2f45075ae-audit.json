@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/shakeeb/Downloads/uv/logs/winston/error/.61bb1ab3fbabed402f4284c81b9961d2f45075ae-audit.json",
+    "files": [
+        {
+            "date": 1717266452465,
+            "name": "/Users/shakeeb/Downloads/uv/logs/winston/error/skb-2024-06-02-00-error.log",
+            "hash": "00c0d4832b9821e9cd304829112ed2045ac89bed1cde99f40734b32f05058c37"
+        }
+    ],
+    "hashType": "sha256"
+}

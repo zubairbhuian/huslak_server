@@ -1,0 +1,4 @@
+2024-5-3 (1AM)[skb] error: atm validation failed: address: Address is missing, distance: Distance is missing, goOn: Go-on is missing, city: city is missing, nearHospital: Near hospital is missing
+2024-5-3 (1AM)[skb] error: activity validation failed: address: Address is missing, price: Price is missing, goOn: Go-on is missing, city: city is missing, nearHospital: Near hospital is missing
+2024-5-3 (1AM)[skb] error: activity validation failed: price: Cast to string failed for value "[ 'asas', '' ]" (type Array) at path "price"
+2024-5-3 (1AM)[skb] error: activity validation failed: price: Cast to string failed for value "[ 'asas', 'erw' ]" (type Array) at path "price"

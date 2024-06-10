@@ -1,0 +1,7 @@
+2024-5-9 (9PM)[zb] error: Cannot use an expression nearHospitalId: "" in an exclusion projection
+2024-5-9 (9PM)[zb] error: Data not found
+2024-5-9 (9PM)[zb] error: Email already exists
+2024-5-9 (9PM)[zb] error: Email already exists
+2024-5-9 (9PM)[zb] error: Cast to string failed for value "{ nearHospitalId: '22' }" (type Object) at path "nearHospitalId" for model "huslak-app-users"
+2024-5-9 (9PM)[zb] error: Cannot use an expression nearHospitalId: "" in an exclusion projection
+2024-5-9 (9PM)[zb] error: Cannot use an expression nearHospitalId: "22" in an exclusion projection

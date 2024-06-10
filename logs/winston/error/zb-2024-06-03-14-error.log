@@ -1,0 +1,8 @@
+2024-5-3 (2PM)[zb] error: room validation failed: address: Address is missing, price: Price is missing, goOn: Go-on is missing, city: city is missing, nearHospital: Near hospital is missing
+2024-5-3 (2PM)[zb] error: hotel validation failed: address: Address is missing, price: Price is missing, goOn: Go-on is missing, city: city is missing, nearHospital: Near hospital is missing
+2024-5-3 (2PM)[zb] error: monthly-rental-apartment validation failed: address: Address is missing, price: Price is missing, goOn: Go-on is missing, city: city is missing, nearHospital: Near hospital is missing
+2024-5-3 (2PM)[zb] error: Data not found
+2024-5-3 (2PM)[zb] error: ENOENT: no such file or directory, open 'public/uploads/hotel/img_1717404377188_563391072.png'
+2024-5-3 (2PM)[zb] error: ENOENT: no such file or directory, open 'public/uploads/hotel/img_1717404398795_202740248.png'
+2024-5-3 (2PM)[zb] error: ENOENT: no such file or directory, open 'public/uploads/hotel/img_1717404406763_649527791.png'
+2024-5-3 (2PM)[zb] error: short-stay-apartments validation failed: address: Address is missing, price: Price is missing, goOn: Go-on is missing, city: city is missing, nearHospital: Near hospital is missing
