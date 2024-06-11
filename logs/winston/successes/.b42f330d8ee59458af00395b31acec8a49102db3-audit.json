@@ -129,6 +129,11 @@
             "date": 1718044922306,
             "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/zb-2024-06-11-00-success.log",
             "hash": "005ca92fd9bce4d7a9cb904e7ed34b2d4af865d37ee73542ed71e7e58bc11eac"
+        },
+        {
+            "date": 1718132897349,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/successes/zb-2024-06-12-01-success.log",
+            "hash": "ae763b564aff5bf25fced009df123c5c8854fc8fa110846ce0515c50c6c8eaab"
         }
     ],
     "hashType": "sha256"

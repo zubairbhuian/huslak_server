@@ -129,6 +129,11 @@
             "date": 1718044922309,
             "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/zb-2024-06-11-00-error.log",
             "hash": "f4fb8ae7a8ec3ea296c615d2525e7ad8ce22732dadd3757bfd705654d9d982a1"
+        },
+        {
+            "date": 1718132897352,
+            "name": "/Users/zubair/Documents/GitHub/huslak_server/logs/winston/error/zb-2024-06-12-01-error.log",
+            "hash": "a3b8945ee36b5afd4cccbad723ff36885baa73d28667754ebfa3bcbb08c4ed02"
         }
     ],
     "hashType": "sha256"

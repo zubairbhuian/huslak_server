@@ -16,32 +16,32 @@ const allEmergencyNumber = catchAsync(async (req, res, next) => {
     // search RegExp and filter
     const searchRegExp = new RegExp(".*" + search + ".*", "i");
     const filter = {
-      isAdmin: { $ne: true },
-      $or: [
-        { name: { $regex: searchRegExp } },
-      ],
+        isAdmin: { $ne: true },
+        $or: [
+            { number: { $regex: searchRegExp } },
+        ],
     };
-  
+
     // totale items
     const count = await EmergencyNumberModel.find(filter).countDocuments();
     // user find
     const users = await EmergencyNumberModel.find(filter)
-      .limit(limit)
-      .skip((page - 1) * limit);
+        .limit(limit)
+        .skip((page - 1) * limit);
     if (!users) throw new Error('Can not get ');
     sendResponse(res, {
-      success: true,
-      statusCode: 200,
-      message: 'success',
-      pagination: {
-        page: page,
-        limit: limit,
-        nextPage: page + 1 <= Math.ceil(count / limit) ? page + 1 : null,
-        prevousPage: page - 1 > 0 ? page - 1 : null,
-        total: Math.ceil(count / limit),
-  
-      },
-      data: users,
+        success: true,
+        statusCode: 200,
+        message: 'success',
+        pagination: {
+            page: page,
+            limit: limit,
+            nextPage: page + 1 <= Math.ceil(count / limit) ? page + 1 : null,
+            prevousPage: page - 1 > 0 ? page - 1 : null,
+            total: Math.ceil(count / limit),
+
+        },
+        data: users,
     });
     next()
 })
@@ -85,7 +85,7 @@ const updateEmergencyNumber = catchAsync(async (req: Request, res: Response, nex
         throw new ApiErrors(400, 'Invalid ID')
     }
     // Find the document by ID and update it
-    const updatedData = await EmergencyNumberModel.findByIdAndUpdate(id, {body}, { new: true });
+    const updatedData = await EmergencyNumberModel.findByIdAndUpdate(id, { body }, { new: true });
     if (!updatedData) {
         throw new ApiErrors(404, 'Data not found')
     }
