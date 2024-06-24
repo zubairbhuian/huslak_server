@@ -13,17 +13,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HospitalController = void 0;
+const fs_extra_1 = __importDefault(require("fs-extra"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const ApiErrors_1 = __importDefault(require("../../../errors/ApiErrors"));
 const catchAsync_1 = __importDefault(require("../../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../utils/sendResponse"));
 const hospital_model_1 = require("./hospital.model");
-const fs_extra_1 = __importDefault(require("fs-extra"));
 // ! ====== Get  =======
 const allHospital = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.search || "";
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
+    const nearHospitalId = req.query.nearHospitalId || "";
+    const cityId = req.query.cityId || "";
     // search RegExp and filter
     const searchRegExp = new RegExp(".*" + search + ".*", "i");
     const filter = {
@@ -32,6 +34,12 @@ const allHospital = (0, catchAsync_1.default)((req, res, next) => __awaiter(void
             { name: { $regex: searchRegExp } },
         ],
     };
+    if (nearHospitalId) {
+        filter['nearHospitalId'] = nearHospitalId;
+    }
+    if (cityId) {
+        filter['cityId'] = cityId;
+    }
     // totale items
     const count = yield hospital_model_1.HospitalModel.find(filter).countDocuments();
     // user find

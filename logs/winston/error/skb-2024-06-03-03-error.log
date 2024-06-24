@@ -1,6 +1,0 @@
-2024-5-3 (3AM)[skb] error: food validation failed: restaurantId: restaurantId is missing, price: Price is missing
-2024-5-3 (3AM)[skb] error: emergency-number validation failed: nearHospital: Near hospital is missing, city: city is missing, address: Address is missing, number: Name is missing
-2024-5-3 (3AM)[skb] error: emergency-number validation failed: nearHospital: Near hospital is missing, city: city is missing, address: Address is missing, number: Name is missing
-2024-5-3 (3AM)[skb] error: Expected double-quoted property name in JSON at position 109
-2024-5-3 (3AM)[skb] error: E11000 duplicate key error collection: test.emergency-numbers index: number_1 dup key: { number: "number" }
-2024-5-3 (3AM)[skb] error: id is required

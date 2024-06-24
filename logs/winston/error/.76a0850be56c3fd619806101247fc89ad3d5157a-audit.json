@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/.76a0850be56c3fd619806101247fc89ad3d5157a-audit.json",
+    "files": [
+        {
+            "date": 1719240373551,
+            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-06-24-20-error.log",
+            "hash": "8c35a10fa6cedb88aa7321a886e7346326cf264f82a5082db1e36e07e484a255"
+        }
+    ],
+    "hashType": "sha256"
+}

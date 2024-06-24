@@ -27,19 +27,21 @@ exports.EmergencyNumberController = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const ApiErrors_1 = __importDefault(require("../../../errors/ApiErrors"));
 const catchAsync_1 = __importDefault(require("../../../utils/catchAsync"));
-const emergency_number_model_1 = require("./emergency-number.model");
 const sendResponse_1 = __importDefault(require("../../../utils/sendResponse"));
+const emergency_number_model_1 = require("./emergency-number.model");
 // ! ====== Get  =======
 const allEmergencyNumber = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.search || "";
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
+    const nearHospitalId = req.query.nearHospitalId || "";
+    const cityId = req.query.cityId || "";
     // search RegExp and filter
     const searchRegExp = new RegExp(".*" + search + ".*", "i");
     const filter = {
         isAdmin: { $ne: true },
         $or: [
-            { name: { $regex: searchRegExp } },
+            { number: { $regex: searchRegExp } },
         ],
     };
     // totale items

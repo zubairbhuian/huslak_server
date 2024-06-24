@@ -30,7 +30,7 @@ const hotelSchema = new Schema({
         required: [true, 'cityId is missing'],
         trim: true,
     },
-    nearHospital: {
+    nearHospitalId: {
         type: String,
         required: [true, 'Near hospital is missing'],
         trim: true,
