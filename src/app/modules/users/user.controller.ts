@@ -1,19 +1,32 @@
-import ApiErrors from '../../../errors/ApiErrors';
-import catchAsync from '../../../utils/catchAsync'
-import sandResponse from '../../../utils/sendResponse'
-import sendResponse from '../../../utils/sendResponse';
-import { UserModel } from './user.model';
 import fs from 'fs-extra';
-import jwt from "jsonwebtoken";
-import { JWTHelper } from '../../helper/jwt_helper';
 import mongoose from 'mongoose';
+import ApiErrors from '../../../errors/ApiErrors';
+import catchAsync from '../../../utils/catchAsync';
+import sendResponse from '../../../utils/sendResponse';
+import { JWTHelper } from '../../helper/jwt_helper';
+import { UserModel } from './user.model';
 
+
+
+type TSearchCriteria = {
+  isAdmin?: { $ne: boolean };
+  $or?: {
+    name?: { $regex: RegExp },
+    email?: { $regex: RegExp },
+    phone?: { $regex: RegExp }
+  }[];
+  nearHospitalId?: string;
+  cityId?: string;
+  userType?: string;
+}
 
 // ! ====== Get  =======
 const allUser = catchAsync(async (req, res, next) => {
   const search = req.query.search || "";
-  const cityId = req.query.cityId || "";
-  const nearHospitalId = req.query.nearHospitalId || "";
+  const cityId = req.query.cityId?.toString() || "";
+  const nearHospitalId = req.query.nearHospitalId?.toString() || "";
+  const userType = req.query.userType?.toString() || "";
+
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
   // hide
@@ -24,11 +37,8 @@ const allUser = catchAsync(async (req, res, next) => {
   };
   // search RegExp and filter
   const searchRegExp = new RegExp(".*" + search + ".*", "i");
-  const cityIdRegExp = new RegExp(".*" + cityId + ".*", "i");
-  const nearHospitalIdRegExp = new RegExp(".*" + nearHospitalId + ".*", "i");
-  console.log(cityId)
-  console.log(nearHospitalId)
-  const filter = {
+
+  const filter: TSearchCriteria = {
     isAdmin: { $ne: true },
     $or: [
       { name: { $regex: searchRegExp } },
@@ -36,9 +46,17 @@ const allUser = catchAsync(async (req, res, next) => {
       { phone: { $regex: searchRegExp } },
     ],
   };
-
+  if (cityId) {
+    filter['cityId'] = cityId;
+  }
+  if (nearHospitalId) {
+    filter['nearHospitalId'] = nearHospitalId;
+  }
+  if (userType) {
+    filter['userType'] = userType;
+  }
   // totale items
-  const count = await UserModel.find(filter, options).countDocuments();
+  const count = await UserModel.find(filter).countDocuments();
   // user find
   const users = await UserModel.find(filter, options)
     .limit(limit)
@@ -53,12 +71,11 @@ const allUser = catchAsync(async (req, res, next) => {
       limit: limit,
       nextPage: page + 1 <= Math.ceil(count / limit) ? page + 1 : null,
       prevousPage: page - 1 > 0 ? page - 1 : null,
-      total: Math.ceil(count / limit),
+      total: Math.ceil(count),
 
     },
     data: users,
   });
-  next()
 })
 
 

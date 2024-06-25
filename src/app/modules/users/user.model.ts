@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document, Model } from 'mongoose';
 import bcrypt from 'bcrypt';
+import mongoose, { Document, Schema } from 'mongoose';
 
 interface ILanguage {
   _id: string;
@@ -77,6 +77,7 @@ const userSchema = new Schema<IUser>({
   },
   userType: {
     type: String,
+    enum: ['doctor', 'user', "translator", "carer"],
     required: [true, 'User type is missing'],
     trim: true,
   },

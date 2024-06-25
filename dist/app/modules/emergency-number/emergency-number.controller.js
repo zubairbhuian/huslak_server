@@ -44,6 +44,12 @@ const allEmergencyNumber = (0, catchAsync_1.default)((req, res, next) => __await
             { number: { $regex: searchRegExp } },
         ],
     };
+    if (nearHospitalId) {
+        filter['nearHospitalId'] = nearHospitalId;
+    }
+    if (cityId) {
+        filter['cityId'] = cityId;
+    }
     // totale items
     const count = yield emergency_number_model_1.EmergencyNumberModel.find(filter).countDocuments();
     // user find

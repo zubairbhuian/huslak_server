@@ -24,18 +24,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
+const fs_extra_1 = __importDefault(require("fs-extra"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const ApiErrors_1 = __importDefault(require("../../../errors/ApiErrors"));
 const catchAsync_1 = __importDefault(require("../../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../utils/sendResponse"));
-const user_model_1 = require("./user.model");
-const fs_extra_1 = __importDefault(require("fs-extra"));
 const jwt_helper_1 = require("../../helper/jwt_helper");
-const mongoose_1 = __importDefault(require("mongoose"));
+const user_model_1 = require("./user.model");
 // ! ====== Get  =======
 const allUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b, _c;
     const search = req.query.search || "";
-    const cityId = req.query.cityId || "";
-    const nearHospitalId = req.query.nearHospitalId || "";
+    const cityId = ((_a = req.query.cityId) === null || _a === void 0 ? void 0 : _a.toString()) || "";
+    const nearHospitalId = ((_b = req.query.nearHospitalId) === null || _b === void 0 ? void 0 : _b.toString()) || "";
+    const userType = ((_c = req.query.userType) === null || _c === void 0 ? void 0 : _c.toString()) || "";
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
     // hide
@@ -45,10 +47,6 @@ const allUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, 
     };
     // search RegExp and filter
     const searchRegExp = new RegExp(".*" + search + ".*", "i");
-    const cityIdRegExp = new RegExp(".*" + cityId + ".*", "i");
-    const nearHospitalIdRegExp = new RegExp(".*" + nearHospitalId + ".*", "i");
-    console.log(cityId);
-    console.log(nearHospitalId);
     const filter = {
         isAdmin: { $ne: true },
         $or: [
@@ -57,8 +55,17 @@ const allUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, 
             { phone: { $regex: searchRegExp } },
         ],
     };
+    if (cityId) {
+        filter['cityId'] = cityId;
+    }
+    if (nearHospitalId) {
+        filter['nearHospitalId'] = nearHospitalId;
+    }
+    if (userType) {
+        filter['userType'] = userType;
+    }
     // totale items
-    const count = yield user_model_1.UserModel.find(filter, options).countDocuments();
+    const count = yield user_model_1.UserModel.find(filter).countDocuments();
     // user find
     const users = yield user_model_1.UserModel.find(filter, options)
         .limit(limit)
@@ -74,11 +81,10 @@ const allUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, 
             limit: limit,
             nextPage: page + 1 <= Math.ceil(count / limit) ? page + 1 : null,
             prevousPage: page - 1 > 0 ? page - 1 : null,
-            total: Math.ceil(count / limit),
+            total: Math.ceil(count),
         },
         data: users,
     });
-    next();
 }));
 // ! ====== create user  =======
 const createUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

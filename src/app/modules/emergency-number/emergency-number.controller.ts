@@ -14,6 +14,14 @@ const allEmergencyNumber = catchAsync(async (req, res, next) => {
   const nearHospitalId = req.query.nearHospitalId as string || "";
   const cityId = req.query.cityId as string || "";
 
+
+  type TSearchCriteria = {
+    isAdmin: { $ne: boolean };
+    $or: { number: { $regex: RegExp } }[];
+    nearHospitalId?: string;
+    cityId?: string;
+  }
+
   // search RegExp and filter
   const searchRegExp = new RegExp(".*" + search + ".*", "i");
   const filter: TSearchCriteria = {
