@@ -1,30 +1,13 @@
 import bcrypt from 'bcrypt';
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface ILanguage {
-  _id: string;
-  name: string;
-  img: string;
-}
-
-interface IDoctorSpecialist {
-  _id: string;
-  name: string;
-}
-
-interface IAvailability {
-  dayName: string;
-  availableTime: string;
-  isAvailable: boolean;
-}
-
-interface IUser extends Document {
+type IUser = {
   email: string;
   name: string;
   phone: string;
   password: string;
   address: string;
-  userType: string;
+  userType: 'doctor' | 'user' | 'translator' | 'carer' | 'admin';
   isBlock: boolean;
   isAdmin: boolean;
   img: string;
@@ -32,28 +15,9 @@ interface IUser extends Document {
   discretion: string;
   cityId: string;
   nearHospitalId: string;
-  languages: ILanguage[];
-  doctorSpecialist: IDoctorSpecialist[];
-  availability: IAvailability[];
   comparePassword(candidatePassword: string): Promise<boolean>;
-}
+} & Document
 
-const languageSchema = new Schema<ILanguage>({
-  _id: { type: String, required: true },
-  name: { type: String, required: true },
-  img: { type: String, required: true }
-});
-
-const doctorSpecialistSchema = new Schema<IDoctorSpecialist>({
-  _id: { type: String, required: true },
-  name: { type: String, required: true },
-});
-
-const availabilitySchema = new Schema<IAvailability>({
-  dayName: { type: String, required: true },
-  availableTime: { type: String, required: true },
-  isAvailable: { type: Boolean, required: true },
-});
 
 const userSchema = new Schema<IUser>({
   name: {
@@ -77,7 +41,7 @@ const userSchema = new Schema<IUser>({
   },
   userType: {
     type: String,
-    enum: ['doctor', 'user', "translator", "carer"],
+    enum: ['doctor', 'user', 'translator', 'carer', 'admin'],
     required: [true, 'User type is missing'],
     trim: true,
   },
@@ -117,16 +81,14 @@ const userSchema = new Schema<IUser>({
   cityId: {
     type: String,
     trim: true,
-    default: ''
+    required: [true, 'City is missing'],
   },
   nearHospitalId: {
     type: String,
     trim: true,
-    default: ''
+    required: [true, 'Near Hospital is missing'],
   },
-  languages: [languageSchema],
-  doctorSpecialist: [doctorSpecialistSchema],
-  availability: [availabilitySchema]
+
 }, { timestamps: true });
 
 userSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {

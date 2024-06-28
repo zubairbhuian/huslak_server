@@ -7,7 +7,6 @@ import { JWTHelper } from '../../helper/jwt_helper';
 import { UserModel } from './user.model';
 
 
-
 type TSearchCriteria = {
   isAdmin?: { $ne: boolean };
   $or?: {
@@ -90,15 +89,18 @@ const createUser = catchAsync(async (req, res, next) => {
   const filename: string = (req.file as Express.Multer.File).filename;
   const imgPath: string = `/uploads/user/${filename}`;
   // Get request body
-  const { email, name, phone, password, userType } = req.body;
+  const { email, name, phone, password, userType, cityId, nearHospitalId } = req.body;
   try {
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
       throw new ApiErrors(400, 'Email already exists');
     }
+    if (userType === 'admin') {
+      throw new ApiErrors(400, 'You are not allowed to create an admin user');
+    }
     // Add to database
     const user = await UserModel.create({
-      email, name, phone, password, img: imgPath, userType
+      email, name, phone, password, img: imgPath, userType, cityId, nearHospitalId,
     });
 
     // If data is not created, throw an error
