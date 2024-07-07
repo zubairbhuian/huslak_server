@@ -5,20 +5,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.allRoutes = void 0;
 const express_1 = __importDefault(require("express"));
-const user_routes_1 = require("../app/modules/users/user.routes");
-const city_routes_1 = require("../app/modules/city/city.routes");
-const hospital_routes_1 = require("../app/modules/hospital/hospital.routes");
-const pharmacy_routes_1 = require("../app/modules/pharmacy/pharmacy.routes");
-const super_market_routes_1 = require("../app/modules/super-market/super-market.routes");
-const atm_routes_1 = require("../app/modules/atm/atm.routes");
 const activity_routes_1 = require("../app/modules/activities/activity.routes");
-const restaurant_routes_1 = require("../app/modules/restaurants/restaurant.routes");
+const atm_routes_1 = require("../app/modules/atm/atm.routes");
+const availability_routes_1 = require("../app/modules/availability/availability.routes");
+const booking_routes_1 = require("../app/modules/bookign/booking.routes");
+const city_routes_1 = require("../app/modules/city/city.routes");
+const country_routes_1 = require("../app/modules/country/country.routes");
 const emergency_number_routes_1 = require("../app/modules/emergency-number/emergency-number.routes");
+const hospital_routes_1 = require("../app/modules/hospital/hospital.routes");
 const hotel_routes_1 = require("../app/modules/hotels/hotel.routes");
 const monthly_rental_apartments_routes_1 = require("../app/modules/monthly-rental-apartments/monthly-rental-apartments.routes");
+const pharmacy_routes_1 = require("../app/modules/pharmacy/pharmacy.routes");
+const restaurant_routes_1 = require("../app/modules/restaurants/restaurant.routes");
 const room_routes_1 = require("../app/modules/room/room.routes");
 const short_stay_apartments_routes_1 = require("../app/modules/short-stay-apartments/short-stay-apartments.routes");
-const country_routes_1 = require("../app/modules/country/country.routes");
+const super_market_routes_1 = require("../app/modules/super-market/super-market.routes");
+const user_routes_1 = require("../app/modules/users/user.routes");
 const router = express_1.default.Router();
 const modelRoutes = [
     { path: '/user', route: user_routes_1.UserRoute },
@@ -35,6 +37,8 @@ const modelRoutes = [
     { path: '/', route: room_routes_1.RoomRoute },
     { path: '/', route: short_stay_apartments_routes_1.ShortStayApartmentsRoute },
     { path: '/', route: country_routes_1.CountryRoute },
+    { path: '/', route: availability_routes_1.ScheduleRoute },
+    { path: "/", route: booking_routes_1.BookingRoute }
 ];
 modelRoutes.forEach(ru => router.use(ru.path, ru.route));
 exports.allRoutes = router;

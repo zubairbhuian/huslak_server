@@ -49,6 +49,16 @@
             "date": 1719576567500,
             "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-06-28-18-error.log",
             "hash": "127a1aaeacbc152916af08b22c171ba322fee7b13eb942ee833d89202e08ada6"
+        },
+        {
+            "date": 1719666756239,
+            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-06-29-19-error.log",
+            "hash": "2bdc6e424ff22f27f1fbfe254e8a69a80045245cd323eca1c5e14e6c0d89d3ae"
+        },
+        {
+            "date": 1720373549887,
+            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-07-07-23-error.log",
+            "hash": "03fab81feb985593197690cd045fc85dec5564f1bb3d2fd303361881719975e8"
         }
     ],
     "hashType": "sha256"

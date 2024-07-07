@@ -138,7 +138,10 @@ const createUser = catchAsync(async (req, res, next) => {
 
 // ! ====== Login user  =======
 const longinUser = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, userType } = req.body;
+
+  if (!userType) throw new ApiErrors(400, 'userType is required')
+
   // check email and password
   if (!email || !password) {
     throw new ApiErrors(400, 'email, and password is required');
@@ -148,6 +151,7 @@ const longinUser = catchAsync(async (req, res, next) => {
   if (!user) {
     throw new ApiErrors(400, 'User not found ,please signUp first');
   }
+  if (userType !== user.userType) throw new ApiErrors(400, ' type is not correct');
   // Check if the password is correct
   const isPasswordValid = await user.comparePassword(password);
   if (!isPasswordValid) {

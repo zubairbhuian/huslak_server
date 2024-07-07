@@ -12,6 +12,7 @@ export type TSearchCriteria = {
   $or: { name: { $regex: RegExp } }[];
   nearHospitalId?: string;
   cityId?: string;
+  restaurantId?: string;
 }
 
 // ! ====== Get  =======

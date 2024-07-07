@@ -13,12 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CityController = void 0;
+const fs_extra_1 = __importDefault(require("fs-extra"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const ApiErrors_1 = __importDefault(require("../../../errors/ApiErrors"));
 const catchAsync_1 = __importDefault(require("../../../utils/catchAsync"));
-const city_model_1 = require("./city.model");
-const fs_extra_1 = __importDefault(require("fs-extra"));
 const sendResponse_1 = __importDefault(require("../../../utils/sendResponse"));
+const city_model_1 = require("./city.model");
 // ! ====== Get city =======
 const allCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.search || "";

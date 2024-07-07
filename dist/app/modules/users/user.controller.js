@@ -96,15 +96,18 @@ const createUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
     const filename = req.file.filename;
     const imgPath = `/uploads/user/${filename}`;
     // Get request body
-    const { email, name, phone, password, userType } = req.body;
+    const { email, name, phone, password, userType, cityId, nearHospitalId } = req.body;
     try {
         const existingUser = yield user_model_1.UserModel.findOne({ email });
         if (existingUser) {
             throw new ApiErrors_1.default(400, 'Email already exists');
         }
+        if (userType === 'admin') {
+            throw new ApiErrors_1.default(400, 'You are not allowed to create an admin user');
+        }
         // Add to database
         const user = yield user_model_1.UserModel.create({
-            email, name, phone, password, img: imgPath, userType
+            email, name, phone, password, img: imgPath, userType, cityId, nearHospitalId,
         });
         // If data is not created, throw an error
         if (!user) {
@@ -139,7 +142,9 @@ const createUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
 }));
 // ! ====== Login user  =======
 const longinUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password } = req.body;
+    const { email, password, userType } = req.body;
+    if (!userType)
+        throw new ApiErrors_1.default(400, 'userType is required');
     // check email and password
     if (!email || !password) {
         throw new ApiErrors_1.default(400, 'email, and password is required');
@@ -149,6 +154,8 @@ const longinUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
     if (!user) {
         throw new ApiErrors_1.default(400, 'User not found ,please signUp first');
     }
+    if (userType !== user.userType)
+        throw new ApiErrors_1.default(400, ' type is not correct');
     // Check if the password is correct
     const isPasswordValid = yield user.comparePassword(password);
     if (!isPasswordValid) {

@@ -38,20 +38,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const mongoose_1 = __importStar(require("mongoose"));
-const languageSchema = new mongoose_1.Schema({
-    _id: { type: String, required: true },
-    name: { type: String, required: true },
-    img: { type: String, required: true }
-});
-const doctorSpecialistSchema = new mongoose_1.Schema({
-    _id: { type: String, required: true },
-    name: { type: String, required: true },
-});
-const availabilitySchema = new mongoose_1.Schema({
-    dayName: { type: String, required: true },
-    availableTime: { type: String, required: true },
-    isAvailable: { type: Boolean, required: true },
-});
 const userSchema = new mongoose_1.Schema({
     name: {
         type: String,
@@ -74,7 +60,7 @@ const userSchema = new mongoose_1.Schema({
     },
     userType: {
         type: String,
-        enum: ['doctor', 'user', "translator", "carer"],
+        enum: ['doctor', 'user', 'translator', 'carer', 'admin'],
         required: [true, 'User type is missing'],
         trim: true,
     },
@@ -114,16 +100,13 @@ const userSchema = new mongoose_1.Schema({
     cityId: {
         type: String,
         trim: true,
-        default: ''
+        required: [true, 'City is missing'],
     },
     nearHospitalId: {
         type: String,
         trim: true,
-        default: ''
+        required: [true, 'Near Hospital is missing'],
     },
-    languages: [languageSchema],
-    doctorSpecialist: [doctorSpecialistSchema],
-    availability: [availabilitySchema]
 }, { timestamps: true });
 userSchema.methods.comparePassword = function (candidatePassword) {
     return __awaiter(this, void 0, void 0, function* () {

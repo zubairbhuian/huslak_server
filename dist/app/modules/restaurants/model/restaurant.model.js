@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestaurantModel = void 0;
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const mongoose_1 = __importDefault(require("mongoose"));
+const { Schema } = mongoose_1.default;
 const restaurantSchema = new Schema({
     name: {
         type: String,
@@ -35,6 +38,11 @@ const restaurantSchema = new Schema({
         required: [true, 'Near hospital is missing'],
         trim: true,
     },
+    description: {
+        type: String,
+        required: [true, 'Description is missing'],
+        trim: true,
+    },
     img: {
         type: String,
         default: ''
@@ -42,5 +50,5 @@ const restaurantSchema = new Schema({
 }, {
     timestamps: true // when this data is created or updated
 });
-exports.RestaurantModel = mongoose.model('restaurant', restaurantSchema);
+exports.RestaurantModel = mongoose_1.default.model('restaurant', restaurantSchema);
 //# sourceMappingURL=restaurant.model.js.map

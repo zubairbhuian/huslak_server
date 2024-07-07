@@ -16,6 +16,7 @@ const allFood = catchAsync(async (req, res, next) => {
   const limit = Number(req.query.limit) || 10;
   const nearHospitalId = req.query.nearHospitalId as string || "";
   const cityId = req.query.cityId as string || "";
+  const restaurantId = req.query.restaurantId as string || "";
 
   // search RegExp and filter
   const searchRegExp = new RegExp(".*" + search + ".*", "i");
@@ -30,6 +31,9 @@ const allFood = catchAsync(async (req, res, next) => {
   }
   if (cityId) {
     filter['cityId'] = cityId;
+  }
+  if (restaurantId) {
+    filter['restaurantId'] = restaurantId;
   }
 
   // totale items
