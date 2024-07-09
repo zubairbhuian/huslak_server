@@ -7,6 +7,7 @@ import { BookingRoute } from '../app/modules/bookign/booking.routes'
 import { CityRoute } from '../app/modules/city/city.routes'
 import { CountryRoute } from '../app/modules/country/country.routes'
 import { EmergencyNumberRoute } from '../app/modules/emergency-number/emergency-number.routes'
+import goldBox from '../app/modules/goldBox/goldBox.routes'
 import { HospitalRoute } from '../app/modules/hospital/hospital.routes'
 import { HotelRoute } from '../app/modules/hotels/hotel.routes'
 import { MonthlyRentalApartmentRoute } from '../app/modules/monthly-rental-apartments/monthly-rental-apartments.routes'
@@ -20,6 +21,9 @@ const router = express.Router()
 
 const modelRoutes = [
   { path: '/user', route: UserRoute },
+  {
+    path: "/gold-box", route: goldBox
+  },
   { path: '/', route: CityRoute },
   { path: '/', route: HospitalRoute },
   { path: '/', route: PharmacyRoute },

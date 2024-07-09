@@ -6,39 +6,19 @@
     "auditLog": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/.686a2c3babe6194a6aa197aca524898605a102ee-audit.json",
     "files": [
         {
-            "date": 1719512761898,
-            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-06-28-00-success.log",
-            "hash": "010ad5ba4ef213cde564b626f54b7ebded721bcaf8d8bed314d63c2012f4b4eb"
-        },
-        {
-            "date": 1719514923233,
-            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-06-28-01-success.log",
-            "hash": "4aae3a99a851ff71cbcc7924577cb1b3d48efb49baefb4613e3dddbecf9281fd"
-        },
-        {
-            "date": 1719571848896,
-            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-06-28-16-success.log",
-            "hash": "add329aa37c5cf4274796894e1d4d48dc239d73b62145c154c092f51c025d532"
-        },
-        {
-            "date": 1719572437038,
-            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-06-28-17-success.log",
-            "hash": "010112c915e67e6b393f76a28fb97e0b51e020b0620d172c58dd622b96d1917a"
-        },
-        {
-            "date": 1719576567498,
-            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-06-28-18-success.log",
-            "hash": "9bcd13720a81840c42775b74cf348c9f6f99b6adef73b7f37b197095a126ae38"
-        },
-        {
-            "date": 1719666756237,
-            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-06-29-19-success.log",
-            "hash": "9f6532e8f30086e06b1d8efecfb7f517c46b42e613c6ecb3e02b3a8cad8bb45a"
-        },
-        {
             "date": 1720373549884,
             "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-07-07-23-success.log",
             "hash": "17d024bc8098299caab986498dd3343e3163bc8f8d258795acb09fe32dc11cc3"
+        },
+        {
+            "date": 1720539686410,
+            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-07-09-21-success.log",
+            "hash": "c63e8c9943ed6a73f883f0b4884cedf107dff40533cc7d9503084493d03b9394"
+        },
+        {
+            "date": 1720541081601,
+            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/successes/zb-2024-07-09-22-success.log",
+            "hash": "e11b907b479f1d94e834dcb4febb48a7bfee582b2877f0508387561e4bf37715"
         }
     ],
     "hashType": "sha256"
