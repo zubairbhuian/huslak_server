@@ -1,6 +1,15 @@
 import bcrypt from 'bcrypt';
 import mongoose, { Document, Schema } from 'mongoose';
 
+type ILanguage = {
+  _id: string;
+  name: string;
+  img: string;
+}
+type IDoctorSpecialist = {
+  _id: string;
+  name: string;
+}
 type IUser = {
   email: string;
   name: string;
@@ -15,8 +24,21 @@ type IUser = {
   discretion: string;
   cityId: string;
   nearHospitalId: string;
+  languages: ILanguage[];
+  doctorSpecialist: IDoctorSpecialist[];
   comparePassword(candidatePassword: string): Promise<boolean>;
 } & Document
+
+const languageSchema = new Schema<ILanguage>({
+  _id: { type: String, required: true },
+  name: { type: String, required: true },
+  img: { type: String, required: true }
+});
+
+const doctorSpecialistSchema = new Schema<IDoctorSpecialist>({
+  _id: { type: String, required: true },
+  name: { type: String, required: true },
+});
 
 
 const userSchema = new Schema<IUser>({
@@ -83,6 +105,8 @@ const userSchema = new Schema<IUser>({
     trim: true,
     required: [true, 'City is missing'],
   },
+  languages: [languageSchema],
+  doctorSpecialist: [doctorSpecialistSchema],
   nearHospitalId: {
     type: String,
     trim: true,

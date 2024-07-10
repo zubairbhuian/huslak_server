@@ -6,11 +6,6 @@
     "auditLog": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/.76a0850be56c3fd619806101247fc89ad3d5157a-audit.json",
     "files": [
         {
-            "date": 1719332409251,
-            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-06-25-22-error.log",
-            "hash": "a50e3d767809fae4ed686c36b32cb14b500a985023f158373354f7a79d993ff4"
-        },
-        {
             "date": 1719417774504,
             "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-06-26-22-error.log",
             "hash": "585914628ca09573d5ef45a85478f7128ba962b88192736549682b0bcaf9b708"
@@ -64,6 +59,11 @@
             "date": 1720541081602,
             "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-07-09-22-error.log",
             "hash": "bfa3d1eef65a2d88e2a6380740489f6ff2d6306ca7e26a3247ed3425f1d0752d"
+        },
+        {
+            "date": 1720621472817,
+            "name": "/Volumes/skb_w64/world of devlopment/paid_projects/huslak/v2_haslak/logs/winston/error/zb-2024-07-10-20-error.log",
+            "hash": "f75ef7c92e39a91254df3c44461e6a0771263dccff800f8bfb4d580352368f83"
         }
     ],
     "hashType": "sha256"
