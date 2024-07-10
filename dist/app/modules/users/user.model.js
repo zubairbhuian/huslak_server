@@ -38,6 +38,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const mongoose_1 = __importStar(require("mongoose"));
+const languageSchema = new mongoose_1.Schema({
+    _id: { type: String, required: true },
+    name: { type: String, required: true },
+    img: { type: String, required: true }
+});
+const doctorSpecialistSchema = new mongoose_1.Schema({
+    _id: { type: String, required: true },
+    name: { type: String, required: true },
+});
 const userSchema = new mongoose_1.Schema({
     name: {
         type: String,
@@ -102,6 +111,8 @@ const userSchema = new mongoose_1.Schema({
         trim: true,
         required: [true, 'City is missing'],
     },
+    languages: [languageSchema],
+    doctorSpecialist: [doctorSpecialistSchema],
     nearHospitalId: {
         type: String,
         trim: true,

@@ -8,6 +8,6 @@ const router = express.Router();
 router.post('/book', verifyToken, BookingController.createBooking);
 router.put('/book/:id', verifyToken, BookingController.updateBooking);
 router.delete('/book/:id', verifyToken, BookingController.deleteBooking);
-router.get('/book/:userId', verifyToken, BookingController.getUserBookings);
+router.get('/book', verifyToken, BookingController.getUserBookings);
 
 export const BookingRoute = router;

@@ -1,0 +1,6 @@
+2024-6-10 (10PM)[zb] error: Cast to ObjectId failed for value "6665c9dd3ed4d9433f88eff9?status=pending" (type string) at path "userId" for model "Booking"
+2024-6-10 (10PM)[zb] error: Cast to ObjectId failed for value "6665c9dd3ed4d9433f88eff9?status=pending" (type string) at path "providerId" for model "Booking"
+2024-6-10 (10PM)[zb] error: Cast to ObjectId failed for value "6665c9dd3ed4d9433f88eff9?status=pending" (type string) at path "providerId" for model "Booking"
+2024-6-10 (10PM)[zb] error: Cast to ObjectId failed for value "6665c9dd3ed4d9433f88eff9?status=pending" (type string) at path "providerId" for model "Booking"
+2024-6-10 (10PM)[zb] error: Cast to ObjectId failed for value "6665c9dd3ed4d9433f88eff9?status=pending" (type string) at path "providerId" for model "Booking"
+2024-6-10 (10PM)[zb] error: Please provide either userId or providerId

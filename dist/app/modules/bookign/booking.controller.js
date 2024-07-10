@@ -59,13 +59,12 @@ const createBooking = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
 // Update Booking
 const updateBooking = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { date, status } = req.body;
+    const { status } = req.body;
     // Validate ID
     if (!mongoose_1.default.Types.ObjectId.isValid(id)) {
         throw new ApiErrors_1.default(400, 'Invalid booking ID');
     }
     const booking = yield booking_modal_1.BookingModel.findByIdAndUpdate(id, {
-        date,
         status,
     }, { new: true });
     if (!booking) {
@@ -98,18 +97,19 @@ const deleteBooking = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
 }));
 // Get User Bookings
 const getUserBookings = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = req.params;
+    const { userId, providerId } = req.query;
     const { status } = req.query;
-    if (!mongoose_1.default.Types.ObjectId.isValid(userId)) {
-        throw new ApiErrors_1.default(400, 'Invalid user ID');
+    if (userId && providerId) {
+        throw new ApiErrors_1.default(400, 'Please provide either userId or providerId');
     }
-    // add status filter
     let filter;
     if (status) {
-        filter = { userId, status };
+        filter = userId ? filter = { userId, status } :
+            providerId ? filter = { providerId, status } : { status };
     }
     else {
-        filter = { userId };
+        filter = userId ? { userId } :
+            providerId ? { providerId } : {};
     }
     const bookings = yield booking_modal_1.BookingModel.find(filter)
         .populate('userId', '-password')

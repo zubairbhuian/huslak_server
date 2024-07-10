@@ -53,7 +53,7 @@ const createBooking = catchAsync(async (req: Request, res: Response) => {
 // Update Booking
 const updateBooking = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { date, status } = req.body;
+  const { status } = req.body;
 
   // Validate ID
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -61,7 +61,6 @@ const updateBooking = catchAsync(async (req: Request, res: Response) => {
   }
 
   const booking = await BookingModel.findByIdAndUpdate(id, {
-    date,
     status,
   }, { new: true });
 
@@ -102,19 +101,20 @@ const deleteBooking = catchAsync(async (req: Request, res: Response,) => {
 
 // Get User Bookings
 const getUserBookings = catchAsync(async (req: Request, res: Response,) => {
-  const { userId } = req.params;
+  const { userId, providerId } = req.query;
   const { status } = req.query;
 
-  if (!mongoose.Types.ObjectId.isValid(userId)) {
-    throw new ApiErrors(400, 'Invalid user ID');
+  if (userId && providerId) {
+    throw new ApiErrors(400, 'Please provide either userId or providerId');
   }
 
-  // add status filter
   let filter
   if (status) {
-    filter = { userId, status }
+    filter = userId ? filter = { userId, status } :
+      providerId ? filter = { providerId, status } : { status }
   } else {
-    filter = { userId }
+    filter = userId ? { userId } :
+      providerId ? { providerId } : {}
   }
 
   const bookings = await BookingModel.find(filter)
