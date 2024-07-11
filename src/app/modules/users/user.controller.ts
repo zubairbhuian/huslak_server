@@ -152,7 +152,11 @@ const longinUser = catchAsync(async (req, res, next) => {
   if (!user) {
     throw new ApiErrors(400, 'User not found ,please signUp first');
   }
-  if (userType !== user.userType) throw new ApiErrors(400, ' type is not correct');
+  if (userType) {
+    if (userType !== user.userType) {
+      throw new ApiErrors(400, 'User type is not valid');
+    }
+  }
   // Check if the password is correct
   const isPasswordValid = await user.comparePassword(password);
   if (!isPasswordValid) {

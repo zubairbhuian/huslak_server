@@ -32,7 +32,7 @@ const sendResponse_1 = __importDefault(require("../../../utils/sendResponse"));
 const jwt_helper_1 = require("../../helper/jwt_helper");
 const user_model_1 = require("./user.model");
 // ! ====== Get  =======
-const allUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const allUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b, _c;
     const search = req.query.search || "";
     const cityId = ((_a = req.query.cityId) === null || _a === void 0 ? void 0 : _a.toString()) || "";
@@ -143,19 +143,22 @@ const createUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
 // ! ====== Login user  =======
 const longinUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password, userType } = req.body;
-    if (!userType)
-        throw new ApiErrors_1.default(400, 'userType is required');
     // check email and password
     if (!email || !password) {
         throw new ApiErrors_1.default(400, 'email, and password is required');
     }
     // Check if the user exists
     const user = yield user_model_1.UserModel.findOne({ email });
+    if (!userType && !(user.userType === "admin"))
+        throw new ApiErrors_1.default(400, 'userType is required');
     if (!user) {
         throw new ApiErrors_1.default(400, 'User not found ,please signUp first');
     }
-    if (userType !== user.userType)
-        throw new ApiErrors_1.default(400, ' type is not correct');
+    if (userType) {
+        if (userType !== user.userType) {
+            throw new ApiErrors_1.default(400, 'User type is not valid');
+        }
+    }
     // Check if the password is correct
     const isPasswordValid = yield user.comparePassword(password);
     if (!isPasswordValid) {
