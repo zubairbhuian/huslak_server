@@ -20,7 +20,7 @@ type TSearchCriteria = {
 }
 
 // ! ====== Get  =======
-const allUser = catchAsync(async (req, res, next) => {
+const allUser = catchAsync(async (req, res) => {
   const search = req.query.search || "";
   const cityId = req.query.cityId?.toString() || "";
   const nearHospitalId = req.query.nearHospitalId?.toString() || "";
@@ -140,14 +140,15 @@ const createUser = catchAsync(async (req, res, next) => {
 const longinUser = catchAsync(async (req, res, next) => {
   const { email, password, userType } = req.body;
 
-  if (!userType) throw new ApiErrors(400, 'userType is required')
-
   // check email and password
   if (!email || !password) {
     throw new ApiErrors(400, 'email, and password is required');
   }
   // Check if the user exists
   const user = await UserModel.findOne({ email });
+
+  if (!userType && !(user.userType === "admin")) throw new ApiErrors(400, 'userType is required')
+
   if (!user) {
     throw new ApiErrors(400, 'User not found ,please signUp first');
   }
