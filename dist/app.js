@@ -3,13 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
-const routes_1 = require("./routes");
-const path_1 = __importDefault(require("path"));
-const globalErrorHandler_1 = __importDefault(require("./utils/globalErrorHandler"));
-const body_parser_1 = __importDefault(require("body-parser"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
+const path_1 = __importDefault(require("path"));
+const routes_1 = require("./routes");
+const globalErrorHandler_1 = __importDefault(require("./utils/globalErrorHandler"));
 // Create Express server
 const app = (0, express_1.default)();
 // Serve static files from the 'public' directory
@@ -18,7 +18,7 @@ app.use(express_1.default.static(publicPath));
 // Parse URL-encoded bodies
 const rateLimiter = (0, express_rate_limit_1.default)({
     windowMs: 1 * 60 * 100, // 1 minute
-    max: 10,
+    max: 30,
     message: "Too many reuests from this IP",
 });
 app.use(rateLimiter);

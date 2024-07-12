@@ -38,11 +38,11 @@ const restaurantSchema = new Schema({
         required: [true, 'Near hospital is missing'],
         trim: true,
     },
-    description: {
-        type: String,
-        required: [true, 'Description is missing'],
-        trim: true,
-    },
+    // description: {
+    //   type: String,
+    //   required: [true, 'Description is missing'],
+    //   trim: true,
+    // }
     img: {
         type: String,
         default: ''

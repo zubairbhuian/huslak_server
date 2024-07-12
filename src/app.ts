@@ -1,10 +1,10 @@
-import cors from 'cors'
-import express, { Application, Request, Response } from 'express'
-import { allRoutes } from './routes'
-import path from 'path';
-import globalErrorsHandler from './utils/globalErrorHandler'
-import bodyParser from 'body-parser'
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import express, { Application, Request, Response } from 'express';
 import rateLimit from 'express-rate-limit';
+import path from 'path';
+import { allRoutes } from './routes';
+import globalErrorsHandler from './utils/globalErrorHandler';
 
 // Create Express server
 const app: Application = express()
@@ -16,7 +16,7 @@ app.use(express.static(publicPath));
 // Parse URL-encoded bodies
 const rateLimiter = rateLimit({
   windowMs: 1 * 60 * 100, // 1 minute
-  max: 10,
+  max: 30,
   message: "Too many reuests from this IP",
 });
 
