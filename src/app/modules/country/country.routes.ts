@@ -1,20 +1,17 @@
-import express from 'express'
-import { CountryController } from './country.controller'
+import express from 'express';
 import multer from 'multer';
-import path from 'path';
-import { FileUpload } from '../../../utils/file_upload';
+import { CountryController } from './country.controller';
+
+import { fileFilter, limits, storage } from '../../../utils/file_uploadv2';
 import verifyToken from '../../middleware/verify_token_middleware';
 
 const router = express.Router()
 
-
-// file Upload
-const upload = multer(
-    {
-        storage: FileUpload.storage("public/uploads/country"),
-        limits: { fileSize: 3 * 1024 * 1024 }
-    });
-
+const upload = multer({
+  storage: storage('/uploads/country'),
+  limits: limits,
+  fileFilter: fileFilter
+});
 
 // Routes
 router.get('/country', verifyToken, CountryController.allCountry)

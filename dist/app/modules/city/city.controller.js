@@ -20,7 +20,7 @@ const catchAsync_1 = __importDefault(require("../../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../utils/sendResponse"));
 const city_model_1 = require("./city.model");
 // ! ====== Get city =======
-const allCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const allCity = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.search || "";
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
@@ -53,10 +53,9 @@ const allCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, 
         },
         data: users,
     });
-    next();
 }));
 // ! ====== create city =======
-const createCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const createCity = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Check if file is provided
     if (!req.file) {
         throw new ApiErrors_1.default(400, 'File is required');
@@ -85,7 +84,6 @@ const createCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
             message: 'City added successfully',
             data: data,
         });
-        next();
     }
     catch (error) {
         // Delete the uploaded file if there is an error
@@ -97,12 +95,10 @@ const createCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
                 console.log(`File public${imgPath} deleted successfully.`);
             }
         });
-        // Pass the error to the error handler
-        next(error);
     }
 }));
 // ! ====== Update city =======
-const updateCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const updateCity = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.query.id;
     // request body
     const { name, temperature, countryId } = req.body;
@@ -127,7 +123,6 @@ const updateCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
             message: 'City Add successfuly',
             data: updatedData,
         });
-        next();
     }
     // file name
     const newFilename = req.file.filename;
@@ -160,7 +155,6 @@ const updateCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
         message: 'City updata successfuly',
         data: updatedData,
     });
-    next();
 }));
 // ! ====== Update city =======
 const deleteCity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

@@ -1,0 +1,6 @@
+2024-6-16 (9PM)[zb] error: Cannot read properties of undefined (reading 'filename')
+2024-6-16 (9PM)[zb] error: File is required
+2024-6-16 (9PM)[zb] error: File is required
+2024-6-16 (9PM)[zb] error: AirportTransfer validation failed: phone: Path `phone` is required., driver.description: Path `driver.description` is required., driver.name: Path `driver.name` is required., vehicle.year: Path `vehicle.year` is required., vehicle.model: Path `vehicle.model` is required., vehicle.make: Path `vehicle.make` is required., rate: Path `rate` is required.
+2024-6-16 (9PM)[zb] error: AirportTransfer validation failed: rate: Path `rate` is required.
+2024-6-16 (9PM)[zb] error: Transfer not found

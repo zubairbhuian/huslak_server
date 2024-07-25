@@ -69,7 +69,7 @@ const createFood = catchAsync(async (req: Request, res: Response, next: NextFunc
 
   // Get file name and path
   const filename: string = (req.file as Express.Multer.File).filename;
-  const imgPath: string = `/uploads/food/${filename}`;
+  const imgPath = `/uploads/food/${filename}`;
 
   // Get request body
   const { restaurantId, name, address, price, goOn, cityId, nearHospitalId } = req.body;

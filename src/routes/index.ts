@@ -1,9 +1,11 @@
 import express from 'express'
 
 import { ActivityRoute } from '../app/modules/activities/activity.routes'
+import { airportRouter } from '../app/modules/AirportTransfer/airport-transfer.routes'
 import { AtmRoute } from '../app/modules/atm/atm.routes'
 import { ScheduleRoute } from '../app/modules/availability/availability.routes'
 import { BookingRoute } from '../app/modules/bookign/booking.routes'
+import { carRentalRouter } from '../app/modules/carRental/car-rental.route'
 import { CityRoute } from '../app/modules/city/city.routes'
 import { CountryRoute } from '../app/modules/country/country.routes'
 import { EmergencyNumberRoute } from '../app/modules/emergency-number/emergency-number.routes'
@@ -38,7 +40,9 @@ const modelRoutes = [
   { path: '/', route: ShortStayApartmentsRoute },
   { path: '/', route: CountryRoute },
   { path: '/', route: ScheduleRoute },
-  { path: "/", route: BookingRoute }
+  { path: "/", route: BookingRoute },
+  { path: "/", route: airportRouter },
+  { path: "/", route: carRentalRouter }
 
 ]
 modelRoutes.forEach(ru => router.use(ru.path, ru.route))

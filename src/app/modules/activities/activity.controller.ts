@@ -16,7 +16,7 @@ export type TSearchCriteria = {
 }
 
 // ! ====== Get  =======
-const allActivity = catchAsync(async (req, res, next) => {
+const allActivity = catchAsync(async (req, res) => {
   const search = req.query.search || "";
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
@@ -59,11 +59,10 @@ const allActivity = catchAsync(async (req, res, next) => {
     },
     data: users,
   });
-  next()
 })
 
 // ! ====== create  =======
-const createActivity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+const createActivity = catchAsync(async (req: Request, res: Response) => {
   // Check if file is provided
   if (!req.file) {
     throw new ApiErrors(400, 'File is required');
@@ -71,7 +70,7 @@ const createActivity = catchAsync(async (req: Request, res: Response, next: Next
 
   // Get file name and path
   const filename: string = (req.file as Express.Multer.File).filename;
-  const imgPath: string = `/uploads/activity/${filename}`;
+  const imgPath = `/uploads/activity/${filename}`;
 
   // Get request body
   const { name, address, price, goOn, cityId, nearHospitalId } = req.body;
@@ -101,8 +100,6 @@ const createActivity = catchAsync(async (req: Request, res: Response, next: Next
       message: 'Added successfully',
       data: data,
     });
-
-    next();
   } catch (error) {
     // Delete the uploaded file if there is an error
     fs.unlink(`public${imgPath}`, (err) => {
@@ -112,9 +109,6 @@ const createActivity = catchAsync(async (req: Request, res: Response, next: Next
         console.log(`File public${imgPath} deleted successfully.`);
       }
     });
-
-    // Pass the error to the error handler
-    next(error);
   }
 });
 
@@ -149,7 +143,7 @@ const updateActivity = catchAsync(async (req: Request, res: Response, next: Next
   // file name
   const newFilename: string = (req.file as Express.Multer.File).filename;
   // new file path
-  const NewFilePath: String = "/uploads/activity/" + newFilename;
+  const NewFilePath = "/uploads/activity/" + newFilename;
   // old data get from db
   const oldData = await ActivityModel.findById(id);
   if (!oldData) {
@@ -166,9 +160,6 @@ const updateActivity = catchAsync(async (req: Request, res: Response, next: Next
     }
   });
 
-
-
-
   // Find the document by ID and update it
   const updatedData = await ActivityModel.findByIdAndUpdate(id, { name, address, price, goOn, cityId, nearHospitalId, img: NewFilePath }, { new: true });
   if (!updatedData) {
@@ -180,13 +171,12 @@ const updateActivity = catchAsync(async (req: Request, res: Response, next: Next
     message: 'Updata successfuly',
     data: updatedData,
   })
-  next()
 })
 
 
 
 // ! ====== Update  =======
-const deleteActivity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+const deleteActivity = catchAsync(async (req: Request, res: Response) => {
   const id = req.query.id as string;
   // check id 
   if (!id) {
@@ -223,7 +213,6 @@ const deleteActivity = catchAsync(async (req: Request, res: Response, next: Next
     message: 'Delete successfuly',
     data: deletedData,
   })
-  next()
 })
 
 

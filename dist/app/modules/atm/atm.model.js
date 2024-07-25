@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ATMModel = void 0;
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const mongoose_1 = __importDefault(require("mongoose"));
+const { Schema } = mongoose_1.default;
 const atmSchema = new Schema({
     name: {
         type: String,
@@ -42,5 +45,5 @@ const atmSchema = new Schema({
 }, {
     timestamps: true // when this data is created or updated
 });
-exports.ATMModel = mongoose.model('atm', atmSchema);
+exports.ATMModel = mongoose_1.default.model('atm', atmSchema);
 //# sourceMappingURL=atm.model.js.map

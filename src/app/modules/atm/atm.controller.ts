@@ -64,7 +64,7 @@ const createAtm = catchAsync(async (req: Request, res: Response, next: NextFunct
 
   // Get file name and path
   const filename: string = (req.file as Express.Multer.File).filename;
-  const imgPath: string = `/uploads/atm/${filename}`;
+  const imgPath = `/uploads/atm/${filename}`;
 
   // Get request body
   const { name, address, distance, goOn, cityId, nearHospitalId } = req.body;
@@ -142,7 +142,7 @@ const updateAtm = catchAsync(async (req: Request, res: Response, next: NextFunct
   // file name
   const newFilename: string = (req.file as Express.Multer.File).filename;
   // new file path
-  const NewFilePath: String = "/uploads/atm/" + newFilename;
+  const NewFilePath = "/uploads/atm/" + newFilename;
   // old data get from db
   const oldData = await ATMModel.findById(id);
   if (!oldData) {

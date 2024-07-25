@@ -20,7 +20,7 @@ const catchAsync_1 = __importDefault(require("../../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../utils/sendResponse"));
 const activity_model_1 = require("./activity.model");
 // ! ====== Get  =======
-const allActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const allActivity = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const search = req.query.search || "";
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
@@ -61,10 +61,9 @@ const allActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void
         },
         data: users,
     });
-    next();
 }));
 // ! ====== create  =======
-const createActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const createActivity = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Check if file is provided
     if (!req.file) {
         throw new ApiErrors_1.default(400, 'File is required');
@@ -96,7 +95,6 @@ const createActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(v
             message: 'Added successfully',
             data: data,
         });
-        next();
     }
     catch (error) {
         // Delete the uploaded file if there is an error
@@ -108,8 +106,6 @@ const createActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(v
                 console.log(`File public${imgPath} deleted successfully.`);
             }
         });
-        // Pass the error to the error handler
-        next(error);
     }
 }));
 // ! ====== Update  =======
@@ -171,10 +167,9 @@ const updateActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(v
         message: 'Updata successfuly',
         data: updatedData,
     });
-    next();
 }));
 // ! ====== Update  =======
-const deleteActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteActivity = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.query.id;
     // check id 
     if (!id) {
@@ -211,7 +206,6 @@ const deleteActivity = (0, catchAsync_1.default)((req, res, next) => __awaiter(v
         message: 'Delete successfuly',
         data: deletedData,
     });
-    next();
 }));
 exports.ActivityController = {
     createActivity,

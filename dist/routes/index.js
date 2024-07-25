@@ -6,9 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.allRoutes = void 0;
 const express_1 = __importDefault(require("express"));
 const activity_routes_1 = require("../app/modules/activities/activity.routes");
+const airport_transfer_routes_1 = require("../app/modules/AirportTransfer/airport-transfer.routes");
 const atm_routes_1 = require("../app/modules/atm/atm.routes");
 const availability_routes_1 = require("../app/modules/availability/availability.routes");
 const booking_routes_1 = require("../app/modules/bookign/booking.routes");
+const car_rental_route_1 = require("../app/modules/carRental/car-rental.route");
 const city_routes_1 = require("../app/modules/city/city.routes");
 const country_routes_1 = require("../app/modules/country/country.routes");
 const emergency_number_routes_1 = require("../app/modules/emergency-number/emergency-number.routes");
@@ -42,7 +44,9 @@ const modelRoutes = [
     { path: '/', route: short_stay_apartments_routes_1.ShortStayApartmentsRoute },
     { path: '/', route: country_routes_1.CountryRoute },
     { path: '/', route: availability_routes_1.ScheduleRoute },
-    { path: "/", route: booking_routes_1.BookingRoute }
+    { path: "/", route: booking_routes_1.BookingRoute },
+    { path: "/", route: airport_transfer_routes_1.airportRouter },
+    { path: "/", route: car_rental_route_1.carRentalRouter }
 ];
 modelRoutes.forEach(ru => router.use(ru.path, ru.route));
 exports.allRoutes = router;

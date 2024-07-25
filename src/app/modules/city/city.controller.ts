@@ -8,7 +8,7 @@ import { CityModel } from "./city.model";
 
 
 // ! ====== Get city =======
-const allCity = catchAsync(async (req, res, next) => {
+const allCity = catchAsync(async (req, res) => {
   const search = req.query.search || "";
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
@@ -43,11 +43,10 @@ const allCity = catchAsync(async (req, res, next) => {
     },
     data: users,
   });
-  next()
 })
 
 // ! ====== create city =======
-const createCity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+const createCity = catchAsync(async (req: Request, res: Response) => {
   // Check if file is provided
   if (!req.file) {
     throw new ApiErrors(400, 'File is required');
@@ -55,7 +54,7 @@ const createCity = catchAsync(async (req: Request, res: Response, next: NextFunc
 
   // Get file name and path
   const filename: string = (req.file as Express.Multer.File).filename;
-  const imgPath: string = `/uploads/city/${filename}`;
+  const imgPath = `/uploads/city/${filename}`;
 
   // Get request body
   const { name, temperature, countryId } = req.body;
@@ -82,8 +81,6 @@ const createCity = catchAsync(async (req: Request, res: Response, next: NextFunc
       message: 'City added successfully',
       data: data,
     });
-
-    next();
   } catch (error) {
     // Delete the uploaded file if there is an error
     fs.unlink(`public${imgPath}`, (err) => {
@@ -93,14 +90,11 @@ const createCity = catchAsync(async (req: Request, res: Response, next: NextFunc
         console.log(`File public${imgPath} deleted successfully.`);
       }
     });
-
-    // Pass the error to the error handler
-    next(error);
   }
 });
 
 // ! ====== Update city =======
-const updateCity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+const updateCity = catchAsync(async (req: Request, res: Response) => {
   const id = req.query.id as string;
   // request body
   const { name, temperature, countryId } = req.body;
@@ -125,12 +119,11 @@ const updateCity = catchAsync(async (req: Request, res: Response, next: NextFunc
       message: 'City Add successfuly',
       data: updatedData,
     })
-    next()
   }
   // file name
   const newFilename: string = (req.file as Express.Multer.File).filename;
   // new file path
-  const NewFilePath: String = "/uploads/city/" + newFilename;
+  const NewFilePath = "/uploads/city/" + newFilename;
   // old data get from db
   const oldData = await CityModel.findById(id);
   if (!oldData) {
@@ -161,7 +154,6 @@ const updateCity = catchAsync(async (req: Request, res: Response, next: NextFunc
     message: 'City updata successfuly',
     data: updatedData,
   })
-  next()
 })
 
 

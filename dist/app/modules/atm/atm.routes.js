@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AtmRoute = void 0;
 const express_1 = __importDefault(require("express"));
-const atm_controller_1 = require("./atm.controller");
 const multer_1 = __importDefault(require("multer"));
 const file_upload_1 = require("../../../utils/file_upload");
 const verify_token_middleware_1 = __importDefault(require("../../middleware/verify_token_middleware"));
+const atm_controller_1 = require("./atm.controller");
 const router = express_1.default.Router();
 // file Upload
 const upload = (0, multer_1.default)({
