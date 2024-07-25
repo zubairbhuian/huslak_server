@@ -87,7 +87,7 @@ const createUser = catchAsync(async (req, res, next) => {
 
   // Get file name and path
   const filename: string = (req.file as Express.Multer.File).filename;
-  const imgPath: string = `/uploads/user/${filename}`;
+  const imgPath = `/uploads/user/${filename}`;
   // Get request body
   const { email, name, phone, password, userType, cityId, nearHospitalId } = req.body;
   try {
@@ -146,6 +146,10 @@ const longinUser = catchAsync(async (req, res, next) => {
   }
   // Check if the user exists
   const user = await UserModel.findOne({ email });
+
+  if (!user) {
+    throw new ApiErrors(400, 'User not found ');
+  }
 
   if (!userType && !(user.userType === "admin")) throw new ApiErrors(400, 'userType is required')
 
