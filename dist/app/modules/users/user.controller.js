@@ -149,6 +149,9 @@ const longinUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
     }
     // Check if the user exists
     const user = yield user_model_1.UserModel.findOne({ email });
+    if (!user) {
+        throw new ApiErrors_1.default(400, 'User not found ');
+    }
     if (!userType && !(user.userType === "admin"))
         throw new ApiErrors_1.default(400, 'userType is required');
     if (!user) {

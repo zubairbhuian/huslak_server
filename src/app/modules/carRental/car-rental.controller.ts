@@ -7,14 +7,28 @@ import sendResponse from '../../../utils/sendResponse';
 import CarRentalModel from './car-rental.modal';
 
 
+export type TSearchCriteria = {
+  $or: [
+    { make?: { $regex: RegExp } },
+    { model?: { $regex: RegExp } },
+    { location?: { $regex: RegExp } },
+    { phone?: { $regex: RegExp } },
+  ]
+  nearHospitalId?: string;
+  cityId?: string;
+  restaurantId?: string;
+}
+
 // ====== Get All Car Rentals =======
 const getAllRentals = catchAsync(async (req: Request, res: Response) => {
   const search = req.query.search || '';
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
+  const nearHospitalId = req.query.nearHospitalId as string || "";
+  const cityId = req.query.cityId as string || "";
 
   const searchRegExp = new RegExp('.*' + search + '.*', 'i');
-  const filter = {
+  const filter: TSearchCriteria = {
     $or: [
       { make: { $regex: searchRegExp } },
       { model: { $regex: searchRegExp } },
@@ -22,6 +36,13 @@ const getAllRentals = catchAsync(async (req: Request, res: Response) => {
       { phone: { $regex: searchRegExp } },
     ],
   };
+  if (nearHospitalId) {
+    filter['nearHospitalId'] = nearHospitalId;
+  }
+  if (cityId) {
+    filter['cityId'] = cityId;
+  }
+
 
   const count = await CarRentalModel.find(filter).countDocuments();
   const rentals = await CarRentalModel.find(filter)
@@ -46,7 +67,7 @@ const getAllRentals = catchAsync(async (req: Request, res: Response) => {
 
 // ====== Create Car Rental =======
 const createRental = catchAsync(async (req: Request, res: Response) => {
-  const { make, model, year, seats, bags, pricePerDay, location, phone } = req.body;
+  const { make, model, year, seats, bags, pricePerDay, location, phone, cityId, nearHospitalId } = req.body;
 
   if (!req.file) { throw new ApiErrors(400, 'File is required'); }
   const filename: string = (req.file as Express.Multer.File).filename;
@@ -62,6 +83,7 @@ const createRental = catchAsync(async (req: Request, res: Response) => {
     phone,
     pricePerDay,
     img: imgPath,
+    cityId, nearHospitalId
   });
 
   if (!rental) {

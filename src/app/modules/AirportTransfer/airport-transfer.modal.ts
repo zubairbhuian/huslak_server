@@ -24,6 +24,16 @@ const AirportTransferSchema: Schema = new Schema({
   img: { type: String, default: '' },
   rate: { type: Number, required: true },
   location: { type: String, required: true },
+  cityId: {
+    type: String,
+    trim: true,
+    required: [true, 'City is missing'],
+  },
+  nearHospitalId: {
+    type: String,
+    trim: true,
+    required: [true, 'Near Hospital is missing'],
+  },
 }, {
   timestamps: true
 });

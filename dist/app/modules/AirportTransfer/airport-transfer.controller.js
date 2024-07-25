@@ -24,16 +24,24 @@ const getAllTransfers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     const search = req.query.search || '';
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
+    const nearHospitalId = req.query.nearHospitalId || '';
+    const cityId = req.query.cityId || '';
     const searchRegExp = new RegExp('.*' + search + '.*', 'i');
     const filter = {
         $or: [
             { make: { $regex: searchRegExp } },
             { model: { $regex: searchRegExp } },
-            { name: { $regex: searchRegExp } },
             { location: { $regex: searchRegExp } },
             { phone: { $regex: searchRegExp } },
+            { name: { $regex: searchRegExp } },
         ],
     };
+    if (nearHospitalId) {
+        filter['nearHospitalId'] = nearHospitalId;
+    }
+    if (cityId) {
+        filter['cityId'] = cityId;
+    }
     const count = yield airport_transfer_modal_1.default.find(filter).countDocuments();
     const transfers = yield airport_transfer_modal_1.default.find(filter)
         .limit(limit)
@@ -59,7 +67,7 @@ const createTransfer = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     }
     const filename = req.file.filename;
     const imgPath = `/uploads/airport-transfer/${filename}`;
-    const { make, model, year, driverName, description, phone, rate, location } = req.body;
+    const { make, model, year, driverName, description, phone, rate, location, cityId, nearHospitalId } = req.body;
     const transfer = yield airport_transfer_modal_1.default.create({
         make,
         model,
@@ -70,6 +78,7 @@ const createTransfer = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
         rate,
         location,
         img: imgPath,
+        cityId, nearHospitalId
     });
     if (!transfer) {
         yield (0, file_uploadv2_1.deleteFile)(imgPath);

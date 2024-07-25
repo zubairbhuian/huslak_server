@@ -6,22 +6,46 @@ import { deleteFile } from '../../../utils/file_uploadv2';
 import sendResponse from '../../../utils/sendResponse';
 import AirportTransferModel from './airport-transfer.modal';
 
+
+export type TSearchCriteria = {
+  $or: [
+    { make?: { $regex: RegExp } },
+    { model?: { $regex: RegExp } },
+    { location?: { $regex: RegExp } },
+    { phone?: { $regex: RegExp } },
+    { name?: { $regex: RegExp } },
+
+  ]
+  nearHospitalId?: string;
+  cityId?: string;
+  restaurantId?: string;
+}
+
+
 // ====== Get All Airport Transfers =======
 const getAllTransfers = catchAsync(async (req: Request, res: Response,) => {
   const search = req.query.search || '';
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
+  const nearHospitalId = req.query.nearHospitalId as string || '';
+  const cityId = req.query.cityId as string || '';
 
   const searchRegExp = new RegExp('.*' + search + '.*', 'i');
-  const filter = {
+  const filter: TSearchCriteria = {
     $or: [
       { make: { $regex: searchRegExp } },
       { model: { $regex: searchRegExp } },
-      { name: { $regex: searchRegExp } },
       { location: { $regex: searchRegExp } },
       { phone: { $regex: searchRegExp } },
+      { name: { $regex: searchRegExp } },
     ],
   };
+  if (nearHospitalId) {
+    filter['nearHospitalId'] = nearHospitalId;
+  }
+  if (cityId) {
+    filter['cityId'] = cityId;
+  }
 
   const count = await AirportTransferModel.find(filter).countDocuments();
   const transfers = await AirportTransferModel.find(filter)
@@ -52,7 +76,7 @@ const createTransfer = catchAsync(async (req: Request, res: Response,) => {
   const filename: string = (req.file as Express.Multer.File).filename;
   const imgPath = `/uploads/airport-transfer/${filename}`;
 
-  const { make, model, year, driverName, description, phone, rate, location } = req.body;
+  const { make, model, year, driverName, description, phone, rate, location, cityId, nearHospitalId } = req.body;
 
   const transfer = await AirportTransferModel.create({
     make,
@@ -64,6 +88,7 @@ const createTransfer = catchAsync(async (req: Request, res: Response,) => {
     rate,
     location,
     img: imgPath,
+    cityId, nearHospitalId
   });
 
   if (!transfer) {

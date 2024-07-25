@@ -24,6 +24,8 @@ const getAllRentals = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     const search = req.query.search || '';
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
+    const nearHospitalId = req.query.nearHospitalId || "";
+    const cityId = req.query.cityId || "";
     const searchRegExp = new RegExp('.*' + search + '.*', 'i');
     const filter = {
         $or: [
@@ -33,6 +35,12 @@ const getAllRentals = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
             { phone: { $regex: searchRegExp } },
         ],
     };
+    if (nearHospitalId) {
+        filter['nearHospitalId'] = nearHospitalId;
+    }
+    if (cityId) {
+        filter['cityId'] = cityId;
+    }
     const count = yield car_rental_modal_1.default.find(filter).countDocuments();
     const rentals = yield car_rental_modal_1.default.find(filter)
         .limit(limit)
@@ -55,7 +63,7 @@ const getAllRentals = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
 }));
 // ====== Create Car Rental =======
 const createRental = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { make, model, year, seats, bags, pricePerDay, location, phone } = req.body;
+    const { make, model, year, seats, bags, pricePerDay, location, phone, cityId, nearHospitalId } = req.body;
     if (!req.file) {
         throw new ApiErrors_1.default(400, 'File is required');
     }
@@ -71,6 +79,7 @@ const createRental = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         phone,
         pricePerDay,
         img: imgPath,
+        cityId, nearHospitalId
     });
     if (!rental) {
         yield (0, file_uploadv2_1.deleteFile)(imgPath);

@@ -22,6 +22,16 @@ const CarRentalSchema: Schema = new Schema({
   location: { type: String, required: true },
   phone: { type: String, required: true },
   img: { type: String, required: true },
+  cityId: {
+    type: String,
+    trim: true,
+    required: [true, 'City is missing'],
+  },
+  nearHospitalId: {
+    type: String,
+    trim: true,
+    required: [true, 'Near Hospital is missing'],
+  },
 });
 
 const CarRentalModel = mongoose.model<ICarRental>('CarRental', CarRentalSchema);

@@ -64,7 +64,7 @@ const createHotel = catchAsync(async (req: Request, res: Response, next: NextFun
 
   // Get file name and path
   const filename: string = (req.file as Express.Multer.File).filename;
-  const imgPath: string = `/uploads/hotel/${filename}`;
+  const imgPath = `/uploads/hotel/${filename}`;
 
   // Get request body
   const { name, address, price, goOn, cityId, nearHospitalId } = req.body;
@@ -142,7 +142,7 @@ const updateHotel = catchAsync(async (req: Request, res: Response, next: NextFun
   // file name
   const newFilename: string = (req.file as Express.Multer.File).filename;
   // new file path
-  const NewFilePath: String = "/uploads/hotel/" + newFilename;
+  const NewFilePath = "/uploads/hotel/" + newFilename;
   // old data get from db
   const oldData = await HotelModel.findById(id);
   if (!oldData) {
